@@ -1,0 +1,34 @@
+<div>
+<table class="matable" border="1">
+    <thead>
+        <tr>
+            <th> idNote</th>
+            <th> date</th>
+            <th> message</th>
+            <th> idPatient</th>
+            <th> Edition</th>
+            <th> Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let n of noteToShow">
+            <td class="data">{{n.idNote}}</td>
+            <td class="data">{{n.messageDate}}</td>
+            <td class="data">{{n.message}}</td>
+            <td class="data">{{n.idPatient}}</td>
+            <td> <button (click) = editNote(n)>Edit</button></td>
+            <td> <button (click) = deleteNote(n)>-</button></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div>
+    <button (click) = modeNew()>New</button>
+    <br/>
+    Mode Actuel : {{MODE}}
+    <br/>
+    <br/>
+    <input type="text" [(ngModel)]="maChaine">
+    <button (click)="newNote()">Envoyer au serveur</button>
+  </div>
+  

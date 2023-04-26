@@ -1,0 +1,30 @@
+
+<div>
+<form *ngIf="registrationForm" [formGroup]="registrationForm" (ngSubmit)="newUser(registrationForm.getRawValue())">
+    <div class="register">
+
+       
+            <label for="lastName">lastName</label>
+            <input type="text" formControlName="lastName">
+
+            <label for="firstName">firstName</label>
+            <input type="text" formControlName="firstName">
+       
+            <label for="address">address</label>
+            <input type="text" formControlName="address">
+     
+            <label for="gender">gender</label>
+            <input type="text" formControlName="gender">
+
+            <label for="phoneNumber">phoneNumber</label>
+            <input type="text" formControlName="phoneNumber">
+
+            <label for="birthDate">birthDate</label>
+            <input type="text" formControlName="birthDate">
+       
+            <button type ="submit" [disabled]="registrationForm.invalid">+</button>
+    </div>
+ 
+</form>
+
+</div>

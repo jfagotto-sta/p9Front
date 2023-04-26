@@ -1,28 +1,36 @@
 <div class = "container">
-    <h1 align="center"> Liste de transactions</h1>
+    <h1 align="center"> Liste des patients</h1>
     <table class="matable" border="1">
     <thead>
         <tr>
+            <th> id</th>
             <th> firstName</th>
             <th> lastName</th>
-            <th> Address </th>
-            <th> BirthDate </th>
-            <th> PhoneNumber </th>
-            <th> Gender </th>
+            <th> Address</th>
+            <th> BirthDate</th>
+            <th> PhoneNumber</th>
+            <th> Gender</th>
+            <th> PatientStatus</th>
+            <th> Voir notes</th>
+            <th> Edit</th>
         </tr>
     </thead>
-    
     <tbody>
         <tr *ngFor="let p of patientList">
+            <td class="data">{{p.id}}</td>
             <td class="data">{{p.firstName}}</td>
             <td class="data">{{p.lastName}}</td>
             <td class="data">{{p.address}}</td>
             <td class="data">{{p.birthDate}}</td>
             <td class="data">{{p.phoneNumber}}</td>
             <td class="data">{{p.gender}}</td>
+            <td class="data">{{p.patientStatus}}</td>
+            <td> <button (click) = ajoutNote(p)>AjoutNote</button></td>
+            <td> <button (click) = deletePatient(p.id)>Delete This Patient</button></td>
+            <button (click) = goToPatientCreationPageEdition(p)>Edit Patient</button>
         </tr>
-    
     </tbody>
-    
     </table>
     </div>
+
+<button (click) = goToPatientCreationPage()>New Patient</button>
