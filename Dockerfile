@@ -1,12 +1,19 @@
-FROM node:18.12-alpine3.16 as node
-RUN apk add --no-cache make gcc g++ python3 git libc6-compat openssl
-RUN mkdir /app
-WORKDIR /app
-COPY package.json ./
-RUN npm install -g npm@9.6.6
-COPY . .
+# Etape 1 : Construire l'application Angular
+# Stage 1: Compile and Build angular codebase
+# Use official node image as the base image
+FROM node:latest as build
+# Set the working directory
+WORKDIR /usr/local/app
+# Add the source code to app
+COPY ./ /usr/local/app/
+# Install all the dependencies
+RUN npm install
+# Generate the build of the application
 RUN npm run build
-FROM nginx:1.23.1-alpine
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY --from=node /app/dist/apps/ui /usr/share/nginx/html
+# Stage 2: Serve app with nginx server
+# Use official nginx image as the base image
+FROM nginx:latest
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/p9-front /usr/share/nginx/html
+# Expose port 80
 EXPOSE 80
